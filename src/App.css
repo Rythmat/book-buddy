@@ -1,0 +1,53 @@
+.listBook {
+  padding: 2vh;
+}
+
+#login {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login > form {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login > form > * {
+  align-self: flex-start;
+  padding: 1vh;
+}
+
+#login > form > button {
+  align-self: center;
+  margin: 1vh;
+}
+
+#pwbutt {
+  margin: 0;
+}
+
+#register {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#register > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#register > form > * {
+  align-self: flex-start;
+  padding: 1vh;
+}
