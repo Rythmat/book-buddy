@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 const Login = ({ userInfo, setUserInfo}) => {
@@ -17,7 +17,7 @@ const Login = ({ userInfo, setUserInfo}) => {
   const [registerError, setRegisterError] = useState(null);
   const [success, setSuccess] = useState(null);
 
-
+ 
   //Function to check password validity based on regular expressions. Returns true if passed
   const passwordValid = (pw) => {
     var re = {
@@ -48,9 +48,7 @@ const Login = ({ userInfo, setUserInfo}) => {
       },
     })
     const userData = await apiResponse.json();
-    console.log(userData);
     setUserInfo(userData);
-    console.log(userInfo);
   }
 
 
@@ -77,14 +75,12 @@ const Login = ({ userInfo, setUserInfo}) => {
         })
       })
       const jsonObj = await loginResponse.json();
-      console.log(jsonObj);
       //Throw an error if the login is failed
       if(jsonObj.message.toLowerCase().indexOf('incorrect')>-1){
         throw new Error(jsonObj.message);
       }
       localStorage.setItem('token',jsonObj.token);
       getUser();
-      console.log(userInfo);
     } catch (error) {
       setLoginError(error.message);
     }

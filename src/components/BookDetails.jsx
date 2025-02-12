@@ -7,15 +7,15 @@ const BookDetails = () => {
   const navigate = useNavigate();
   const [bookDetails, setBookDetails] = useState({});
 
+
+  //Fetching the details of the selected book, and fetching again if it's id changes
   useEffect(() => {
 
     const getDetails = async() => {
       const apiResponse = await fetch(`https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${id}`);
       const detailObj = await apiResponse.json();
-      console.log(detailObj.book);
       setBookDetails(detailObj.book);
     }
-
     getDetails();
 
   },[id])
