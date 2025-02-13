@@ -23,8 +23,8 @@ const Account = ({userInfo, setUserInfo}) => {
       })
       const userData = await apiResponse.json();
       setUserInfo(userData);
-    }
-    getUser();
+      }
+      getUser();
     } catch (error) {
       
     }
@@ -34,7 +34,15 @@ const Account = ({userInfo, setUserInfo}) => {
 
   //Returns a specified book from the user's catalog
   const returnBook = async(bookId) => {
-    
+    const response = await fetch(`https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/reservations/${bookId}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    const deleted = await response.json();
+    navigate(`/books/${deleted.deletedReservation.bookid}`)
   }
 
 
@@ -50,8 +58,8 @@ const Account = ({userInfo, setUserInfo}) => {
         <ul>
           {
           userInfo.books.map((book)=>{ return (
-            <div>
-              <li>{book.name}</li>
+            <div id='checked' key={book.id} style={{backgroundImage: `url(${book.coverimage})`, backgroundPositionY:'49%',}}>
+              <span style={{background:'white',border:'solid 2px black',}}><li style={{padding:'3px'}}>{book.title}</li></span>
               <button onClick={()=>returnBook(book.id)}>Return this Book</button>
             </div>
           )})

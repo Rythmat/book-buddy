@@ -1,9 +1,14 @@
 .listBook {
-  padding: 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px black;
+  width: 25vw;
 }
 
 #login {
-  height: 50vh;
+  height: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +38,7 @@
 }
 
 #register {
-  height: 50vh;
+  height: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,4 +55,43 @@
 #register > form > * {
   align-self: flex-start;
   padding: 1vh;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+#user {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#checked {
+  width: 40vw;
+  padding: 1vh;
+  display: flex;
+  justify-content: space-between;
+  border: solid 1px black;
+}
+
+#log {
+  display: flex;
+  flex-direction: column;
+}
+
+#details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#details > img {
+  height: 60vh;
+  width: auto;
 }

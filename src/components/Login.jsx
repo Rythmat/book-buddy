@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 
-const Login = ({ userInfo, setUserInfo}) => {
+const Login = ({ userInfo, setUserInfo, setLogged}) => {
   //Login use states
   const [emailLogin, setEmailLogin] = useState('');
   const [passwordLogin, setPasswordLogin] = useState('');
@@ -49,6 +49,7 @@ const Login = ({ userInfo, setUserInfo}) => {
     })
     const userData = await apiResponse.json();
     setUserInfo(userData);
+    setLogged(true);
   }
 
 
@@ -75,12 +76,14 @@ const Login = ({ userInfo, setUserInfo}) => {
         })
       })
       const jsonObj = await loginResponse.json();
+      console.log(jsonObj);
       //Throw an error if the login is failed
-      if(jsonObj.message.toLowerCase().indexOf('incorrect')>-1){
+      if(jsonObj.message.toLowerCase().indexOf('success')>-1){
+        localStorage.setItem('token',jsonObj.token);
+        getUser();
+      }else{
         throw new Error(jsonObj.message);
       }
-      localStorage.setItem('token',jsonObj.token);
-      getUser();
     } catch (error) {
       setLoginError(error.message);
     }
@@ -144,7 +147,7 @@ const Login = ({ userInfo, setUserInfo}) => {
       <h2 style={{justifySelf: "center"}}>Hello {userInfo.firstname}!</h2>
       :
       <div id="login">
-        <h1>Login</h1>
+        <h1>Login:</h1>
         <form onSubmit={loginUser}>
           <div>
             <label>Email: </label>

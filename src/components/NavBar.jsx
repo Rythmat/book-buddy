@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
 
-const NavBar = ({setUserInfo}) => {
+const NavBar = ({setUserInfo, setLogged}) => {
 
   const logOut = () =>{
     localStorage.removeItem('token');
     setUserInfo(null);
+    setLogged(false);
   }
 
   return (
